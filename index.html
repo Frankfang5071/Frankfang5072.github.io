@@ -1,0 +1,386 @@
+# Frankfang5072.github.io
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人学术主页 | Personal Academic Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Times New Roman", Arial, sans-serif;
+        }
+
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* 语言切换按钮 */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            margin-left: 10px;
+            border: 1px solid #2c3e50;
+            border-radius: 4px;
+            background: #fff;
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #2c3e50;
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        /* 头部信息 */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .basic-info h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .basic-info p {
+            font-size: 18px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .basic-info p i {
+            color: #3498db;
+            width: 20px;
+        }
+
+        /* 核心模块样式 */
+        .section {
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 i {
+            color: #3498db;
+        }
+
+        .section-content {
+            padding-left: 10px;
+            font-size: 17px;
+        }
+
+        /* 技能模块（单列一行） */
+        .skills {
+            display: flex;
+            flex-direction: column; /* 纵向排列，单列一行 */
+            gap: 12px; /* 行间距 */
+            margin-top: 15px;
+        }
+
+        .skill-item {
+            background: #e8f4fd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+        }
+
+        .skill-item i {
+            color: #3498db;
+            font-size: 16px;
+            width: 20px;
+        }
+
+        /* 列表样式 */
+        .edu-list, .award-list, .intern-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .edu-list li, .award-list li, .intern-list li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .edu-list li::before, .award-list li::before, .intern-list li::before {
+            content: "📌";
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .course-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .course-list li {
+            display: inline-block;
+            background: #f1f9ff;
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin: 5px 8px 5px 0;
+        }
+
+        /* 最后更新日期 */
+        .update-date {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: right;
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .lang-switch {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .section {
+                padding: 15px;
+            }
+            .skill-item {
+                width: 100%; /* 移动端占满宽度 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换按钮 -->
+    <div class="lang-switch">
+        <button class="lang-btn active" id="btn-zh">中文</button>
+        <button class="lang-btn" id="btn-en">English</button>
+    </div>
+
+    <!-- 头部基本信息 -->
+    <div class="header">
+        <div class="basic-info">
+            <h1 id="text-name">方成</h1>
+            <p><i class="fas fa-university"></i><span id="text-school">华东政法大学 / 会计学专业（本科，2024级）</span></p>
+            <p><i class="fas fa-lightbulb"></i><span id="text-direction">研究方向：司法会计</span></p>
+            <p><i class="fas fa-envelope"></i><span id="text-email">邮箱：123FC@qq.com</span></p>
+        </div>
+    </div>
+
+    <!-- 个人简介 -->
+    <div class="section">
+        <h2><i class="fas fa-user"></i><span id="title-intro">个人简介</span></h2>
+        <div class="section-content">
+            <p id="content-intro">
+                华东政法大学2024级会计学本科在读，深耕司法会计领域，兼具扎实的会计专业功底与法律知识储备。擅长将会计实操能力与司法场景结合，具备较强的数据分析、逻辑推理能力，目标成为司法会计领域的复合型人才。
+            </p>
+        </div>
+    </div>
+
+    <!-- 核心技能 -->
+    <div class="section">
+        <h2><i class="fas fa-star"></i><span id="title-skill">核心技能</span></h2>
+        <div class="section-content">
+            <div class="skills">
+                <div class="skill-item"><i class="fas fa-calculator"></i><span id="content-skill1">初级会计执业能力</span></div>
+                <div class="skill-item"><i class="fas fa-language"></i><span id="content-skill2">英语六级（584分）</span></div>
+                <div class="skill-item"><i class="fas fa-video"></i><span id="content-skill3">视频剪辑</span></div>
+                <div class="skill-item"><i class="fas fa-file-excel"></i><span id="content-skill4">Office办公软件（熟练运用）</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实习经历 -->
+    <div class="section">
+        <h2><i class="fas fa-briefcase"></i><span id="title-intern">实习经历</span></h2>
+        <div class="section-content">
+            <ul class="intern-list">
+                <li id="content-intern1">上海叙妙市场营销公司 - 税务实习生 | 2025.01 - 2025.02</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 荣誉&获奖经历 -->
+    <div class="section">
+        <h2><i class="fas fa-trophy"></i><span id="title-award">荣誉&获奖经历</span></h2>
+        <div class="section-content">
+            <ul class="award-list">
+                <li id="content-award1">2024-2025年度校三好学生荣誉称号</li>
+                <li id="content-award2">2024-2025学年综合奖学金一等奖</li>
+                <li id="content-award3">商学院实践部“优秀部员”</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 教育&课程经历 -->
+    <div class="section">
+        <h2><i class="fas fa-graduation-cap"></i><span id="title-edu">教育 & 课程经历</span></h2>
+        <div class="section-content">
+            <p id="subtitle-edu" style="font-weight: 600; margin-bottom: 10px;">教育背景：</p>
+            <ul class="edu-list">
+                <li id="content-edu1">华东政法大学 - 会计学（本科）| 2024.09 - 至今</li>
+            </ul>
+            
+            <p id="subtitle-course" style="font-weight: 600; margin: 20px 0 10px 0;">核心课程：</p>
+            <ul class="course-list">
+                <li id="content-course1">财务会计学</li>
+                <li id="content-course2">管理会计学</li>
+                <li id="content-course3">税法</li>
+                <li id="content-course4">经济法</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 最后更新日期 -->
+    <div class="update-date" id="text-update">最后更新：2026.03.09</div>
+
+    <script>
+        // 【逐行核对】完整双语语言包（ID与DOM一一对应，无遗漏）
+        const langData = {
+            zh: {
+                // 按钮文字
+                "btn-zh": "中文",
+                "btn-en": "English",
+                // 基础信息
+                "text-name": "方成",
+                "text-school": "华东政法大学 / 会计学专业（本科，2024级）",
+                "text-direction": "研究方向：司法会计",
+                "text-email": "邮箱：123FC@qq.com",
+                // 专栏标题
+                "title-intro": "个人简介",
+                "title-skill": "核心技能",
+                "title-intern": "实习经历",
+                "title-award": "荣誉&获奖经历",
+                "title-edu": "教育 & 课程经历",
+                // 二级副标题
+                "subtitle-edu": "教育背景：",
+                "subtitle-course": "核心课程：",
+                // 正文内容
+                "content-intro": "华东政法大学2024级会计学本科在读，深耕司法会计领域，兼具扎实的会计专业功底与法律知识储备。擅长将会计实操能力与司法场景结合，具备较强的数据分析、逻辑推理能力，目标成为司法会计领域的复合型人才。",
+                "content-skill1": "初级会计执业能力",
+                "content-skill2": "英语六级（584分）",
+                "content-skill3": "视频剪辑",
+                "content-skill4": "Office办公软件（熟练运用）",
+                "content-intern1": "上海叙妙市场营销公司 - 税务实习生 | 2025.01 - 2025.02",
+                "content-award1": "2024-2025年度校三好学生荣誉称号",
+                "content-award2": "2024-2025学年综合奖学金一等奖",
+                "content-award3": "商学院实践部“优秀部员”",
+                "content-edu1": "华东政法大学 - 会计学（本科）| 2024.09 - 至今",
+                "content-course1": "财务会计学",
+                "content-course2": "管理会计学",
+                "content-course3": "税法",
+                "content-course4": "经济法",
+                // 更新日期
+                "text-update": "最后更新：2026.03.09"
+            },
+            en: {
+                // 按钮文字
+                "btn-zh": "Chinese",
+                "btn-en": "English",
+                // 基础信息
+                "text-name": "Cheng Fang",
+                "text-school": "East China University of Political Science and Law / Accounting (Undergraduate, Class of 2024)",
+                "text-direction": "Research Direction: Forensic Accounting",
+                "text-email": "Email: 123FC@qq.com",
+                // 专栏标题
+                "title-intro": "Personal Profile",
+                "title-skill": "Core Skills",
+                "title-intern": "Internship Experience",
+                "title-award": "Honors & Awards",
+                "title-edu": "Education & Course Experience",
+                // 二级副标题
+                "subtitle-edu": "Educational Background:",
+                "subtitle-course": "Core Courses:",
+                // 正文内容
+                "content-intro": "Undergraduate student of Accounting (Class of 2024) at East China University of Political Science and Law, focusing on forensic accounting. Equipped with solid accounting foundation and legal knowledge, proficient in combining accounting practical skills with judicial scenarios, with strong data analysis and logical reasoning abilities. Aiming to become a compound talent in forensic accounting.",
+                "content-skill1": "Junior Accounting Professional Competence",
+                "content-skill2": "CET-6 (Score: 584)",
+                "content-skill3": "Video Editing",
+                "content-skill4": "Office Software (Proficient in use)",
+                "content-intern1": "Shanghai Xumiao Marketing Co., Ltd. - Tax Intern | 2025.01 - 2025.02",
+                "content-award1": "Honorary Title of Merit Student of the University (2024-2025)",
+                "content-award2": "First Class Comprehensive Scholarship (2024-2025 Academic Year)",
+                "content-award3": "\"Excellent Member\" of the Practice Department, Business School",
+                "content-edu1": "East China University of Political Science and Law - Accounting (Undergraduate) | 2024.09 - Present",
+                "content-course1": "Financial Accounting",
+                "content-course2": "Management Accounting",
+                "content-course3": "Tax Law",
+                "content-course4": "Economic Law",
+                // 更新日期
+                "text-update": "Last Updated: 2026.03.09"
+            }
+        };
+
+        // 语言切换核心函数（极简逻辑，确保生效）
+        function changeLang(targetLang) {
+            // 遍历所有语言包键值，强制替换DOM内容
+            for (const key in langData[targetLang]) {
+                const elem = document.getElementById(key);
+                if (elem) {
+                    elem.innerText = langData[targetLang][key];
+                }
+            }
+            // 更新按钮激活状态
+            document.getElementById('btn-zh').classList.toggle('active', targetLang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', targetLang === 'en');
+        }
+
+        // 绑定按钮点击事件（直接绑定，无嵌套）
+        document.getElementById('btn-zh').onclick = () => changeLang('zh');
+        document.getElementById('btn-en').onclick = () => changeLang('en');
+
+        // 页面加载默认显示中文
+        window.onload = () => changeLang('zh');
+    </script>
+</body>
+</html>
